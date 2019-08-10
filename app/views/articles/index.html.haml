@@ -1,0 +1,18 @@
+.wrapper
+  - @articles.each do |article|
+    .contents-wrapper
+      .contents.z-depth-2
+        %h5.contents__title
+          = article.title
+        .contents__user-name
+          = article.user.nickname
+        .contents__article
+          = article.text
+        .contents__btn
+          .contents__btn--Show
+            = link_to "Show", article_path(article), class: "waves-effect waves-light btn red lighten-2"
+          - if user_signed_in? && current_user
+            .contents__btn--Edit
+              = link_to "Edit", edit_article_path(article), class: "waves-effect waves-light btn red lighten-2"
+            .contents__btn--Delete
+              = link_to "Delete", article_path(article), method: :delete, class: "waves-effect waves-light btn red lighten-2"

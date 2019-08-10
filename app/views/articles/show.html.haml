@@ -1,0 +1,9 @@
+.wrapper
+  .contents-wrapper
+    .contents.z-depth-2
+      %h5.contents__full--title
+        = @article.title
+      .contents__full--user-name
+        = @article.user.nickname
+      .contents__full--article
+        = @article.text

@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %title MiyaMiniappBlog
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %script{crossorigin: "anonymous", integrity: "sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=", src: "https://code.jquery.com/jquery-3.4.1.min.js"}
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    / Compiled and minified CSS
+    %link{href: "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css", rel: "stylesheet"}/
+    / Compiled and minified JavaScript
+    %script{src: "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"}
+  %body
+    - if flash[:alert]
+      .flash--alert
+        = flash[:alert]
+    .navbar-fixed
+      %nav
+        .nav-wrapper
+          %a.brand-logo.right{href: "/"} Miya-MiniBlog
+          %ul#nav-mobile.left.hide-on-med-and-down
+            %li
+              = link_to "Sign Up", new_user_registration_path unless user_signed_in?
+            %li
+              - if user_signed_in? && current_user
+                = link_to "Sign Out", destroy_user_session_path, method: :delete
+              - else
+                = link_to "Sign In", new_user_session_path
+            %li
+              - if user_signed_in? && current_user
+                = link_to "New_Article", new_article_path
+            %li
+              - if user_signed_in? && current_user
+                = link_to current_user.nickname, user_path(current_user)
+  = yield

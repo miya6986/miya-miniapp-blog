@@ -1,0 +1,9 @@
+.wrapper
+  .contents-wrapper
+    .new-contents.z-depth-2
+      = form_with model: @article do |form|
+        = form.label :title
+        = form.text_field :title, maxlength: 50, value: @article.title
+        = form.label :text
+        = form.text_area :text, class: "materialize-textarea", value: @article.text
+        = form.submit class: "waves-effect waves-light btn red lighten-2"
