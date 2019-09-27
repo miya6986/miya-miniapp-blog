@@ -65,6 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml-rails'
 
 # Use devise gem for user autentication
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 
 gem 'pry-rails'
+gem 'nokogiri', '>= 1.10.4'
